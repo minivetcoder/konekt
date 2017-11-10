@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Image Upload
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content padding>
+<ion-list>
+  <ion-item>
+    <ion-thumbnail item-start [hidden]="first_Image === null">
+       <img src="{{pathForImage(first_Image)}}"  >
+    </ion-thumbnail>
+    <p [hidden]="first_Image !== null">Add Photograph</p>
+    <p [hidden]="first_Image === null">{{cur_first_name}}</p>
+    <button  [hidden]="first_Image !== null" ion-button icon-left item-end (click)="presentActionSheet(1)">
+        <ion-icon name="camera"></ion-icon>Select Image
+     </button>
+      <button ion-button icon-left item-end (click)="uploadImage(1)" [disabled]="first_Image === null">
+        <ion-icon name="cloud-upload"></ion-icon>Upload
+      </button>
+      <button ion-button icon-left item-end (click)="delete(1)" [hidden]="first_Image === null">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+  </ion-item>
+
+   <ion-item>
+    <ion-thumbnail item-start [hidden]="second_Image === null">
+       <img src="{{pathForImage(second_Image)}}">
+    </ion-thumbnail>
+    <p [hidden]="second_Image !== null">Add Photograph</p>
+    <p [hidden]="second_Image === null">{{cur_second_name}}</p>
+    <button   [hidden]="second_Image !== null"  ion-button icon-left item-end (click)="presentActionSheet(2)">
+        <ion-icon name="camera"></ion-icon>Select Image
+     </button>
+      <button ion-button icon-left item-end (click)="uploadImage(2)" [disabled]="second_Image === null">
+        <ion-icon name="cloud-upload"></ion-icon>Upload
+      </button>
+      <button ion-button icon-left item-end (click)="delete(2)" [hidden]="second_Image === null">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+  </ion-item>
+
+   <ion-item>
+    <ion-thumbnail item-start [hidden]="third_Image === null">
+       <img src="{{pathForImage(third_Image)}}"  >
+    </ion-thumbnail>
+    <p [hidden]="third_Image !== null">Add Photograph</p>
+    <p [hidden]="third_Image === null">{{cur_third_name}}</p>
+    <button   [hidden]="third_Image !== null"  ion-button icon-left item-end (click)="presentActionSheet(3)">
+        <ion-icon name="camera"></ion-icon>Select Image
+     </button>
+      <button ion-button icon-left item-end (click)="uploadImage(3)" [disabled]="third_Image === null">
+        <ion-icon name="cloud-upload"></ion-icon>Upload
+      </button>
+      <button ion-button icon-left item-end (click)="delete(3)" [hidden]="third_Image === null">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+  </ion-item>
+
+ <ion-item>
+    <ion-thumbnail item-start [hidden]="fourth_Image === null">
+       <img src="{{pathForImage(fourth_Image)}}"  >
+    </ion-thumbnail>
+    <p [hidden]="fourth_Image !== null">Add Photograph</p>
+    <p [hidden]="fourth_Image === null">{{cur_fourth_name}}</p>
+    <button   [hidden]="fourth_Image !== null"  ion-button icon-left item-end (click)="presentActionSheet(4)">
+        <ion-icon name="camera"></ion-icon>Select Image
+     </button>
+      <button ion-button icon-left item-end (click)="uploadImage(4)" [disabled]="fourth_Image === null">
+        <ion-icon name="cloud-upload"></ion-icon>Upload
+      </button>
+      <button ion-button icon-left item-end (click)="delete(4)" [hidden]="fourth_Image === null">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+  </ion-item>
+
+</ion-list>
+
+</ion-content>
+ 
+<!-- <ion-footer>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <button ion-button icon-left (click)="presentActionSheet()">
+        <ion-icon name="camera"></ion-icon>Select Image
+      </button>
+      <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
+        <ion-icon name="cloud-upload"></ion-icon>Upload
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->

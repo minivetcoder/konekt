@@ -1,0 +1,32 @@
+<ion-content class="myview">
+    <ion-header>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4>
+                    <ion-img [src]="logo" width="118" height="73"></ion-img>
+                </ion-col>
+                <ion-col col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 text-right>
+                    <button ion-button color="light" outline (click)="goToSlide()" class="frntbtn"><strong>Kako deluje?</strong></button>
+                    <button ion-button color="light" outline (click)="showLoginPage()" class="frntbtn">Prijava</button></ion-col>
+
+            </ion-row>
+        </ion-grid>
+    </ion-header>
+    <ion-slides pager=false>
+        <ion-slide>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>
+                        <ion-img [src]="logo" width="200" height="73"></ion-img>
+                        <h1>PAMETNE PONUDBE - samo za člane!</h1>
+                        <button ion-button color="danger" round>REGISTRIRAJ SE</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-slide>
+
+        <ion-slide>
+            <h1>KAKO LAHKO IZKORISTIM KONEKT </h1>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
