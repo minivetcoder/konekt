@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-// let apiUrl = 'http://192.168.0.4/konekt/api/v1/';
 let apiUrl = 'http://demo.minivetsystem.com/konekt/api/v1/';
 
 @Injectable()

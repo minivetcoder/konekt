@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { SelectSearchableModule } from '../components/select/select-module';
+// import { ValidationProvider } from '../providers/validation/validation';
 @NgModule({
   declarations: [
     MyApp,
@@ -22,7 +23,8 @@ import { SelectSearchableModule } from '../components/select/select-module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+
   ]
 })
 export class AppModule {}

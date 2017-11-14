@@ -33,7 +33,10 @@ addoffer {
     .grid {
         padding:0px;
     }
-    .button{
+    ion-item-group  .button{
         background: #FF7F00 !important;
+    }
+    ion-item.no-line > .item-inner {
+        border-bottom: none !important;
     }
 }

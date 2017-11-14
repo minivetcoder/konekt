@@ -1,175 +1,227 @@
 <ion-content padding>
-  <ion-list>
+  <form [formGroup]="addofferForm" (submit)="saveOfferDetails()">
+    <ion-list>
       <ion-list-header text-center>
-          Add Offer
+        Add Offer
       </ion-list-header>
       <ion-item>
-          <ion-label stacked>Title *</ion-label>
-          <ion-input type="text"></ion-input>
+        <ion-label stacked>Title *</ion-label>
+        <ion-input type="text" formControlName="offertitle"   [(ngModel)]="offertitle" ></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label stacked>Product Name *</ion-label>
-          <ion-input type="text"></ion-input>
+        <ion-label stacked>Product Name *</ion-label>
+        <ion-input type="text"  formControlName="productname"   [(ngModel)]="productname" ></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label stacked>Internal Code *</ion-label>
-          <ion-input type="text"></ion-input>
+        <ion-label stacked>Internal Code *</ion-label>
+        <ion-input type="text" formControlName="internalcode"   [(ngModel)]="internalcode" ></ion-input>
       </ion-item>
       <ion-grid>
-          <ion-row>
-              <ion-col col-10>
-                  <ion-item>
-                      <ion-label stacked>Bonus</ion-label>
-                      <ion-input type="text"></ion-input>
-                  </ion-item>
-              </ion-col>
-              <ion-col col-2>
-                  <ion-item>
-                      <ion-label stacked>&nbsp;</ion-label>
-                      <ion-select [(ngModel)]="btype" interface="popover">
-                          <ion-option value="per">%</ion-option>
-                          <ion-option value="pricevalue">&euro;</ion-option>
-                      </ion-select>
-                  </ion-item>
-              </ion-col>
-          </ion-row>
+        <ion-row>
+          <ion-col col-10>
+            <ion-item>
+              <ion-label stacked>Bonus *</ion-label>
+              <ion-input type="number" pattern="[0-9]*" formControlName="bonus"   [(ngModel)]="bonus" ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2>
+            <ion-item text-center>
+              <ion-label stacked>%/&euro;</ion-label>
+              <ion-select interface="popover"  formControlName="bonusby"   [(ngModel)]="bonusby">
+                <ion-option value="dynamic" checked>%</ion-option>
+                <ion-option value="static">&euro;</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
       </ion-grid>
       <ion-item>
-          <ion-label stacked>Add Photograph *</ion-label>
+        <ion-label stacked>Add Photograph *</ion-label>
       </ion-item>
       <ion-item-group>
-          <ion-item>
-              <ion-thumbnail item-start [hidden]="first_Image === null">
-                 <img src="{{pathForImage(first_Image)}}"  >
-              </ion-thumbnail>
-              <p [hidden]="first_Image !== null">Add Photograph</p>
-              <p [hidden]="first_Image === null">{{cur_first_name}}</p>
-              <button  [hidden]="first_Image !== null" ion-button icon-left item-end (click)="presentActionSheet(1)">
-                  <ion-icon name="camera"></ion-icon>Select Image
-               </button>
-                <button ion-button icon-left item-end (click)="uploadImage(1)" [disabled]="first_Image === null">
-                  <ion-icon name="cloud-upload"></ion-icon>Upload
-                </button>
-                <button ion-button icon-left item-end (click)="delete(1)" [hidden]="first_Image === null">
-                  <ion-icon name="trash"></ion-icon>
-                </button>
-            </ion-item>
-          
-             <ion-item>
-              <ion-thumbnail item-start [hidden]="second_Image === null">
-                 <img src="{{pathForImage(second_Image)}}">
-              </ion-thumbnail>
-              <p [hidden]="second_Image !== null">Add Photograph</p>
-              <p [hidden]="second_Image === null">{{cur_second_name}}</p>
-              <button   [hidden]="second_Image !== null"  ion-button icon-left item-end (click)="presentActionSheet(2)">
-                  <ion-icon name="camera"></ion-icon>Select Image
-               </button>
-                <button ion-button icon-left item-end (click)="uploadImage(2)" [disabled]="second_Image === null">
-                  <ion-icon name="cloud-upload"></ion-icon>Upload
-                </button>
-                <button ion-button icon-left item-end (click)="delete(2)" [hidden]="second_Image === null">
-                  <ion-icon name="trash"></ion-icon>
-                </button>
-            </ion-item>
-          
-             <ion-item>
-              <ion-thumbnail item-start [hidden]="third_Image === null">
-                 <img src="{{pathForImage(third_Image)}}"  >
-              </ion-thumbnail>
-              <p [hidden]="third_Image !== null">Add Photograph</p>
-              <p [hidden]="third_Image === null">{{cur_third_name}}</p>
-              <button   [hidden]="third_Image !== null"  ion-button icon-left item-end (click)="presentActionSheet(3)">
-                  <ion-icon name="camera"></ion-icon>Select Image
-               </button>
-                <button ion-button icon-left item-end (click)="uploadImage(3)" [disabled]="third_Image === null">
-                  <ion-icon name="cloud-upload"></ion-icon>Upload
-                </button>
-                <button ion-button icon-left item-end (click)="delete(3)" [hidden]="third_Image === null">
-                  <ion-icon name="trash"></ion-icon>
-                </button>
-            </ion-item>
-          
-           <ion-item>
-              <ion-thumbnail item-start [hidden]="fourth_Image === null">
-                 <img src="{{pathForImage(fourth_Image)}}"  >
-              </ion-thumbnail>
-              <p [hidden]="fourth_Image !== null">Add Photograph</p>
-              <p [hidden]="fourth_Image === null">{{cur_fourth_name}}</p>
-              <button   [hidden]="fourth_Image !== null"  ion-button icon-left item-end (click)="presentActionSheet(4)">
-                  <ion-icon name="camera"></ion-icon>Select Image
-               </button>
-                <button ion-button icon-left item-end (click)="uploadImage(4)" [disabled]="fourth_Image === null">
-                  <ion-icon name="cloud-upload"></ion-icon>Upload
-                </button>
-                <button ion-button icon-left item-end (click)="delete(4)" [hidden]="fourth_Image === null">
-                  <ion-icon name="trash"></ion-icon>
-                </button>
-            </ion-item>
-          
+        <ion-item>
+          <ion-thumbnail item-start [hidden]="first_Image === null">
+            <img src="{{pathForImage(first_Image)}}">
+          </ion-thumbnail>
+          <p [hidden]="first_Image !== null">Add Photograph</p>
+          <p [hidden]="first_Image === null">{{cur_first_name}}</p>
+          <button [hidden]="first_Image !== null" ion-button icon-left item-end (click)="presentActionSheet(1)">
+            <ion-icon name="camera"></ion-icon>Select Image
+          </button>
+          <button ion-button icon-left item-end (click)="uploadImage(1)" [disabled]="first_Image === null">
+            <ion-icon name="cloud-upload"></ion-icon>Upload
+          </button>
+          <button ion-button icon-left item-end (click)="delete(1)" [hidden]="first_Image === null">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item>
+
+        <ion-item>
+          <ion-thumbnail item-start [hidden]="second_Image === null">
+            <img src="{{pathForImage(second_Image)}}">
+          </ion-thumbnail>
+          <p [hidden]="second_Image !== null">Add Photograph</p>
+          <p [hidden]="second_Image === null">{{cur_second_name}}</p>
+          <button [hidden]="second_Image !== null" ion-button icon-left item-end (click)="presentActionSheet(2)">
+            <ion-icon name="camera"></ion-icon>Select Image
+          </button>
+          <button ion-button icon-left item-end (click)="uploadImage(2)" [disabled]="second_Image === null">
+            <ion-icon name="cloud-upload"></ion-icon>Upload
+          </button>
+          <button ion-button icon-left item-end (click)="delete(2)" [hidden]="second_Image === null">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item>
+
+        <ion-item>
+          <ion-thumbnail item-start [hidden]="third_Image === null">
+            <img src="{{pathForImage(third_Image)}}">
+          </ion-thumbnail>
+          <p [hidden]="third_Image !== null">Add Photograph</p>
+          <p [hidden]="third_Image === null">{{cur_third_name}}</p>
+          <button [hidden]="third_Image !== null" ion-button icon-left item-end (click)="presentActionSheet(3)">
+            <ion-icon name="camera"></ion-icon>Select Image
+          </button>
+          <button ion-button icon-left item-end (click)="uploadImage(3)" [disabled]="third_Image === null">
+            <ion-icon name="cloud-upload"></ion-icon>Upload
+          </button>
+          <button ion-button icon-left item-end (click)="delete(3)" [hidden]="third_Image === null">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item>
+
+        <ion-item>
+          <ion-thumbnail item-start [hidden]="fourth_Image === null">
+            <img src="{{pathForImage(fourth_Image)}}">
+          </ion-thumbnail>
+          <p [hidden]="fourth_Image !== null">Add Photograph</p>
+          <p [hidden]="fourth_Image === null">{{cur_fourth_name}}</p>
+          <button [hidden]="fourth_Image !== null" ion-button icon-left item-end (click)="presentActionSheet(4)">
+            <ion-icon name="camera"></ion-icon>Select Image
+          </button>
+          <button ion-button icon-left item-end (click)="uploadImage(4)" [disabled]="fourth_Image === null">
+            <ion-icon name="cloud-upload"></ion-icon>Upload
+          </button>
+          <button ion-button icon-left item-end (click)="delete(4)" [hidden]="fourth_Image === null">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item>
+
       </ion-item-group>
-   
-          <ion-item>
-            <ion-label>Main-Category *</ion-label>
-            <ion-select [(ngModel)]="mcategory"  interface="popover">
-              <ion-option value="nes">NES</ion-option>
-              <ion-option value="n64">Nintendo64</ion-option>
-              <ion-option value="ps">PlayStation</ion-option>
-              <ion-option value="genesis">Sega Genesis</ion-option>
-              <ion-option value="saturn">Sega Saturn</ion-option>
-              <ion-option value="snes">SNES</ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-              <ion-label>Category*</ion-label>
-              <ion-select [(ngModel)]="mcategory"  interface="popover">
-                <ion-option value="nes">NES</ion-option>
-                <ion-option value="n64">Nintendo64</ion-option>
-                <ion-option value="ps">PlayStation</ion-option>
-                <ion-option value="genesis">Sega Genesis</ion-option>
-                <ion-option value="saturn">Sega Saturn</ion-option>
-                <ion-option value="snes">SNES</ion-option>
-              </ion-select>
-            </ion-item>
+
+      <ion-item>
+        <ion-label>Main-Category *</ion-label>
+        <ion-select interface="popover" formControlName="mcategory"   [(ngModel)]="mcategory">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Category*</ion-label>
+        <ion-select  interface="popover"  formControlName="category"   [(ngModel)]="category">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Subcategory*</ion-label>
+        <ion-select interface="popover"  formControlName="subcategory"   [(ngModel)]="subcategory">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Brand*</ion-label>
+        <ion-select interface="popover" formControlName="brand"   [(ngModel)]="brand">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Department*</ion-label>
+        <ion-select interface="popover"  formControlName="department"   [(ngModel)]="department">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Start Date*</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="offerstartdate"   formControlName="offerstartdate" > </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>End Date*</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="offerenddate"   formControlName="offerenddate" > </ion-datetime>
+      </ion-item>
+      <ion-grid>
+        <ion-row *ngFor="let field of fieldArray; let i = index">
+       
+          <ion-col col-10>
             <ion-item>
-              <ion-label>Subcategory*</ion-label>
-              <ion-select [(ngModel)]="mcategory"  interface="popover">
-                <ion-option value="nes">NES</ion-option>
-                <ion-option value="n64">Nintendo64</ion-option>
-                <ion-option value="ps">PlayStation</ion-option>
-                <ion-option value="genesis">Sega Genesis</ion-option>
-                <ion-option value="saturn">Sega Saturn</ion-option>
-                <ion-option value="snes">SNES</ion-option>
-              </ion-select>
+              <ion-label stacked>Characteristics</ion-label>
+              <ion-input type="text" value="{{field.chartics}}" name="{{field.chartics}}"  readonly ></ion-input>
             </ion-item>
+          </ion-col>
+          <ion-col col-2>
+            <ion-item class="no-line" text-center>
+              <button ion-button (click)="deleteFieldValue(i)" icon-only clear>
+                <ion-icon name="close-circle" color="danger"></ion-icon>
+              </button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-10>
             <ion-item>
-              <ion-label>Brand*</ion-label>
-              <ion-select [(ngModel)]="mcategory"  interface="popover">
-                <ion-option value="nes">NES</ion-option>
-                <ion-option value="n64">Nintendo64</ion-option>
-                <ion-option value="ps">PlayStation</ion-option>
-                <ion-option value="genesis">Sega Genesis</ion-option>
-                <ion-option value="saturn">Sega Saturn</ion-option>
-                <ion-option value="snes">SNES</ion-option>
-              </ion-select>
+              <ion-label stacked>Characteristics</ion-label>
+              <ion-input type="text" [(ngModel)]="newAttribute.chartics" formControlName="newAttribute" ></ion-input>
             </ion-item>
-            <ion-item>
-              <ion-label>Department*</ion-label>
-              <ion-select [(ngModel)]="mcategory"  interface="popover">
-                <ion-option value="nes">NES</ion-option>
-                <ion-option value="n64">Nintendo64</ion-option>
-                <ion-option value="ps">PlayStation</ion-option>
-                <ion-option value="genesis">Sega Genesis</ion-option>
-                <ion-option value="saturn">Sega Saturn</ion-option>
-                <ion-option value="snes">SNES</ion-option>
-              </ion-select>
+          </ion-col>
+          <ion-col col-2>
+            <ion-item class="no-line" text-center>
+              <button ion-button (click)="addFieldValue()" icon-only clear>
+                <ion-icon name="add-circle" color="primary"></ion-icon>
+              </button>
             </ion-item>
-            <ion-item>
-              <ion-label>Start Date*</ion-label>
-              <ion-datetime displayFormat="MM/DD/YYYY"> </ion-datetime>
-            </ion-item>
-            <ion-item>
-              <ion-label>End Date*</ion-label>
-              <ion-datetime displayFormat="MM/DD/YYYY"> </ion-datetime>
-            </ion-item>
-  </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item>
+        <ion-label stacked>Description</ion-label>
+        <ion-textarea type="text" [(ngModel)]="offerdesc" formControlName="offerdesc" ></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Delivery Warranty</ion-label>
+        <ion-input type="text" [(ngModel)]="delwarranty" formControlName="delwarranty" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Specification</ion-label>
+        <ion-input type="text" [(ngModel)]="offerspecs" formControlName="offerspecs" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Additional Information</ion-label>
+        <ion-input type="text" [(ngModel)]="offeraddinfo" formControlName="offeraddinfo" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button full color="loginbtn">Submit</button>
+  </form>
 </ion-content>
